@@ -18,7 +18,7 @@ from bottle import (
 #TODO Escala de vídeos verticais está errada
 #TODO filtrar por extensão (argumento sys.argv)
 #TODO verificar novas extensões
-
+#TODO verificar o comprimento da mídia e pular quando acabar
 
 class FileManager:
     def __init__(self, path):
