@@ -3,8 +3,22 @@
 from os import listdir, getcwd
 from os.path import isfile, join, splitext
 from random import choice
-from bottle import route, run, template, static_file
-from sys import argv
+from webbrowser import open
+
+from bottle import (
+        route,
+        run,
+        template,
+        static_file,
+        TEMPLATE_PATH
+        )
+
+#TODO Adicionar try/except
+#TODO auto update da página
+#TODO Escala de vídeos verticais está errada
+#TODO filtrar por extensão (argumento sys.argv)
+#TODO verificar novas extensões
+
 
 class FileManager:
     def __init__(self, path):
@@ -12,6 +26,7 @@ class FileManager:
         self.ALREADY_VIEWED_FILES = []
         self.ACCEPTED_FILE_TYPES = (
             ".jpg",
+            ".jpeg",
             ".png",
             ".webp",
             ".gif",
@@ -19,6 +34,7 @@ class FileManager:
         )
         self.wrapper_for = {
             ".jpg": "<div id='img'></div>",
+            ".jpeg": "<div id='img'></div>",
             ".png": "<div id='img'></div>",
             ".webp": "<div id='img'></div>",
             ".gif": "<div id='img'></div>",
@@ -56,8 +72,9 @@ class FileManager:
     def next(self):
         next_file = self.select_random_file()
         object_to_render = self.create_wrapper(next_file)
-        return template("template",content=object_to_render,file=next_file)
+        return template("/opt/gal/template",content=object_to_render,file=next_file)
 
+TEMPLATE_PATH.append("/opt/gal")
 manager = FileManager(getcwd())
 
 @route('/')
@@ -69,4 +86,6 @@ def server_static(filename):
     return static_file(filename, root=getcwd())
 
 if __name__ == "__main__":
+    print("Starting server at: 'http://localhost:8080'")
+    open("http://localhost:8080")
     run(host='localhost', port=8080, reloader=False, quiet=True)
