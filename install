@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "Tring to delete old installs"
+sudo rm -rf /opt/gal
+sudo rm /bin/gal
+
+echo "Installing"
+
+echo "Creating folder at /opt/gal"
+sudo mkdir /opt/gal
+
+echo "coping files to the new folder"
+sudo cp -R . /opt/gal
+
+echo "Updating permissions"
+sudo chmod +x /opt/gal/gal.py
+
+echo "Creating Symlink at /bin/gal"
+sudo ln -s /opt/gal/gal.py /bin/gal
+
+echo "All done"
