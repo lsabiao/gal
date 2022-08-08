@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from os import listdir, getcwd
 from os.path import isfile, join, splitext
 from random import choice
@@ -56,7 +58,7 @@ class FileManager:
         object_to_render = self.create_wrapper(next_file)
         return template("template",content=object_to_render,file=next_file)
 
-manager = FileManager("wd")
+manager = FileManager(getcwd())
 
 @route('/')
 def index():
@@ -64,7 +66,7 @@ def index():
 
 @route('/static/<filename>')
 def server_static(filename):
-    return static_file(filename, root=getcwd()+"/wd")
+    return static_file(filename, root=getcwd())
 
 if __name__ == "__main__":
-    run(host='localhost', port=8080, reloader=True, quiet=False)
+    run(host='localhost', port=8080, reloader=False, quiet=True)
