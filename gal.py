@@ -38,7 +38,7 @@ class FileManager:
             ".png": "<div id='img'></div>",
             ".webp": "<div id='img'></div>",
             ".gif": "<div id='img'></div>",
-            ".mp4": "<video width='100%' height='100%' autoplay muted controls><source src='/static/{file}' type='video/mp4'>fail</video>"
+            ".mp4": "<video width='100%' height='100%' autoplay loop muted controls><source src='/static/{file}' type='video/mp4'>fail</video>"
         }
         self.useful_files = self.get_useful_files()
         self.fail_save = len(self.useful_files)
