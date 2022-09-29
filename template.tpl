@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gal</title>
     <style>
-      body{margin:0px;background-color: black;}
+      body{
+        margin:0px;
+        background-color: black;
+        overflow-y:hidden;
+      }
       #img{
         background-image: url('/static/{{file}}');
         background-repeat: no-repeat;
@@ -15,7 +19,9 @@
         height: 100vh;
       }
       video{
-        object-fit: cover;
+        width:100%;
+        height:100vh;
+        object-fit: contain;
     }
 
     </style>
